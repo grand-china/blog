@@ -1,0 +1,504 @@
+<!DOCTYPE html><html lang="zh-CN"><head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<link rel="preconnect" href="//www.googletagmanager.com">
+	<link rel="preconnect" href="//zz.bdstatic.com">
+	<link rel="preconnect" href="//sp0.baidu.com">
+	<link rel="preconnect" href="//www.google-analytics.com">
+	<link rel="preconnect" href="//cdn1.lncld.net">
+	<link rel="preconnect" href="//unpkg.com">
+	<link rel="preconnect" href="//app-router.leancloud.cn">
+	<link rel="preconnect" href="//9qpuwspm.api.lncld.net">
+	<link rel="preconnect" href="//gravatar.loli.net">
+
+	<title>快速搭建 NetCloth 验证人节点 | 爱范</title>
+
+	<meta name="HandheldFriendly" content="True">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+	<meta name="generator" content="hexo">
+	<meta name="author" content="Top Man">
+	<meta name="description" content>
+
+	
+	<meta name="keywords" content>
+	
+
+	
+	<link rel="shortcut icon" href="https://i.loli.net/2017/11/26/5a19c0b50432e.png">
+	<link rel="apple-touch-icon" href="https://i.loli.net/2017/11/26/5a19c0b50432e.png">
+	
+
+	
+	<meta name="theme-color" content="#3c484e">
+	<meta name="msapplication-TileColor" content="#3c484e">
+	
+
+	
+
+	
+
+	<meta property="og:site_name" content="爱范">
+	<meta property="og:type" content="article">
+	<meta property="og:title" content="快速搭建 NetCloth 验证人节点 | 爱范">
+	<meta property="og:description" content>
+	<meta property="og:url" content="https://grand-china.github.io/blog/blog/2020/04/10/%E5%BF%AB%E9%80%9F%E6%90%AD%E5%BB%BANetcloth%E9%AA%8C%E8%AF%81%E4%BA%BA%E8%8A%82%E7%82%B9/">
+
+	
+	<meta property="article:published_time" content="2020-04-10T18:04:00+08:00"> 
+	<meta property="article:author" content="Top Man">
+	<meta property="article:published_first" content="爱范, /blog/2020/04/10/%E5%BF%AB%E9%80%9F%E6%90%AD%E5%BB%BANetcloth%E9%AA%8C%E8%AF%81%E4%BA%BA%E8%8A%82%E7%82%B9/">
+	
+
+	
+	
+	
+<link rel="stylesheet" href="/blog/css/allinonecss.min.css">
+
+
+	
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-163299550-1"></script>
+	<script>
+		window.dataLayer = window.dataLayer || [];
+		function gtag(){dataLayer.push(arguments);}
+		gtag('js', new Date());
+		gtag('config', 'UA-163299550-1');
+	</script>
+	
+	
+	
+</head>
+
+<body class="post-template">
+	<div class="site-wrapper">
+		
+
+
+
+
+<header class="site-header post-site-header outer">
+    <div class="inner">
+        
+<nav class="site-nav"> 
+    <div class="site-nav-left">
+        <ul class="nav">
+            <li>
+                
+                <a href="/blog/" title="Home">首页</a>
+                
+            </li>
+            
+            
+            <li>
+                <a href="/about" title="关于">关于</a>
+            </li>
+            
+            <li>
+                <a href="/archives" title="归档">归档</a>
+            </li>
+            
+            
+        </ul> 
+    </div>
+    
+    <div class="search-button-area">
+        <a href="#search" class="search-button">Search ...</a>
+    </div>
+     
+    <div class="site-nav-right">
+        
+        <a href="#search" class="search-button">Search ...</a>
+         
+        
+<div class="social-links">
+    
+    
+    
+    
+    
+    
+    
+</div>
+    </div>
+</nav>
+    </div>
+</header>
+
+
+<div id="site-main" class="site-main outer" role="main">
+    <div class="inner">
+        <header class="post-full-header">
+            <div class="post-full-meta">
+                <time class="post-full-meta-date" datetime="2020-04-10T10:40:30.000Z">
+                    2020-04-10
+                </time>
+                
+                <span class="date-divider">/</span>
+                
+                
+            </div>
+            <h1 class="post-full-title">快速搭建 NetCloth 验证人节点</h1>
+        </header>
+        <div class="post-full no-image">
+            
+            <div class="post-full-content">
+                <article id="photoswipe" class="markdown-body">
+                    <h2 id="NetCloth-公测链-快速搭建：创建验证人"><a href="#NetCloth-公测链-快速搭建：创建验证人" class="headerlink" title="NetCloth 公测链 快速搭建：创建验证人"></a>NetCloth 公测链 快速搭建：创建验证人</h2><h3 id="前言："><a href="#前言：" class="headerlink" title="前言："></a>前言：</h3><p>NetCloth是一个生态系统，分为底层链和应用两部分。<br>NetCloth 区块链是一个点对点的分布式系统。用于记录网络状态，同时为生态内应用提供底层支持。<br>NetCloth APP是一个致力于个人掌握数据与数据安全交换的安全社交软件，是其应用的重要组成部分。</p>
+<p>现在 NetCloth 区块链开始公测了：<a href="https://www.netcloth.org/#/starfish" target="_blank" rel="noopener">https://www.netcloth.org/#/starfish</a></p>
+<h3 id="一、选购腾讯云服务器"><a href="#一、选购腾讯云服务器" class="headerlink" title="一、选购腾讯云服务器"></a>一、选购腾讯云服务器</h3><p>新用户可点击：  <a href="https://url.cn/51xsiTM" target="_blank" rel="noopener">https://url.cn/51xsiTM</a> 获取优惠<br>1、服务器系统配置：Ubuntu 18.04</p>
+<h3 id="二、准备开发环境"><a href="#二、准备开发环境" class="headerlink" title="二、准备开发环境"></a>二、准备开发环境</h3><p>本地ssh、或者web ssh终端登录到 home 目录：</p>
+<p>1、 安装依赖</p>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ubuntu:~$ sudo apt-get update</span><br><span class="line">ubuntu:~$ sudo apt-get install git gcc cmake make golang-statik</span><br></pre></td></tr></tbody></table></figure>
+
+<p>2、配置go</p>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ubuntu:~$ wget https://dl.google.com/go/go1.13.5.linux-amd64.tar.gz</span><br><span class="line">ubuntu:~$ tar -xvf go1.13.5.linux-amd64.tar.gz</span><br><span class="line">ubuntu:~$ sudo mv go /usr/local</span><br></pre></td></tr></tbody></table></figure>
+<p>3、注意在VIM 中修改~/.bashrc，添加配置变量：</p>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">export GOROOT=/usr/local/go</span><br><span class="line">export GOPATH=$HOME/go</span><br><span class="line">export PATH=$GOPATH/bin:$GOROOT/bin:$PATH</span><br><span class="line">export GO111MODULE=on</span><br></pre></td></tr></tbody></table></figure>
+<p>4、修改完之后执行：</p>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ubuntu:~$ source ~/.bashrc</span><br></pre></td></tr></tbody></table></figure>
+<p>5、下载链源码</p>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ubuntu:~$ git clone https://github.com/netcloth/netcloth-chain.git</span><br><span class="line">ubuntu:~$ cd netcloth-chain && git checkout testnet-v1.1.0</span><br></pre></td></tr></tbody></table></figure>
+<p>6、Note：大陆腾讯云服务器配置goproxy，不然可能go下载不下来</p>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ubuntu:~$ export GOPROXY=https://goproxy.io</span><br></pre></td></tr></tbody></table></figure>
+<p>7、编译</p>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ubuntu:~$ make install</span><br></pre></td></tr></tbody></table></figure>
+<p>到此，NetCloth 区块链已经搭建准备完毕！喝口水放松下😄</p>
+<h3 id="三、加入测试网"><a href="#三、加入测试网" class="headerlink" title="三、加入测试网"></a>三、加入测试网</h3><p>1、初始化节点配置，侧链名<br>nchd init #mark# –chain-id nch-testnet<br>将 #mark#  替换成 自定义名字 your_custom_name<br>eg：nchd init netcloth –chain-id nch-testnet</p>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ubuntu:~$ nchd init your_custom_name  --chain-id nch-testnet</span><br></pre></td></tr></tbody></table></figure>
+<p>2.下载测试网genesis文件：</p>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ubuntu:~$ wget http://nch.oss-cn-hangzhou.aliyuncs.com/pkgs/genesis.json -O  ~/.nchd/config/genesis.json</span><br></pre></td></tr></tbody></table></figure>
+<p>3、修改配置文件. Note: 是修改，不是添加追加！！</p>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">ubuntu:~$ vim ~/.nchd/config/config.toml</span><br><span class="line"></span><br><span class="line">在[p2p]配置部分，修改seeds和persistent_peers配置项</span><br><span class="line"># Comma separated list of seed nodes to connect to</span><br><span class="line">seeds = "8ba581e85a00337147ffbf22bc13da78640568b3@13.58.188.155:26656,c57df7491a235753439fa3ea7d908f0ec42e8670@18.191.12.61:26656,b726519a738239378dbb15520f493d1a9a355593@13.124.101.63:26656"</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># Comma separated list of nodes to keep persistent connections to</span><br><span class="line">persistent_peers = "8ba581e85a00337147ffbf22bc13da78640568b3@13.58.188.155:26656,c57df7491a235753439fa3ea7d908f0ec42e8670@18.191.12.61:26656,b726519a738239378dbb15520f493d1a9a355593@13.124.101.63:26656"</span><br></pre></td></tr></tbody></table></figure>
+
+
+
+<p>4、后台启动节点</p>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ubuntu:~$ nohup nchd start --trace 1>nchd.out 2>&1 &</span><br><span class="line">ubuntu:~$ nohup nchcli rest-server 1>cli.out 2>&1 &</span><br></pre></td></tr></tbody></table></figure>
+<p>5、一段时间后，查看节点同步状态</p>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ubuntu:~$ curl http://127.0.0.1:26657/status</span><br></pre></td></tr></tbody></table></figure>
+<p>输出 包含 如下<br>“sync_info”: {  //当前节点信息<br>      “latest_block_hash”: “A4E5D60DE7CFB6598846A4131302C8FD28F2697DF2291B33B0892A9EACB562D8”, // 最新的区块 hash<br>      “latest_app_hash”: “32F0B29280EDF3BEAE98424D9AA256EDBEFC973D1C33431A8D74FCA3BC3B6582”,<br>      “latest_block_height”: “1489”,     // 当前节点同步到的最新区块高度 //最新区块高度<br>      “latest_block_time”: “2019-09-10T05:33:13.428333584Z”, //最新区块时间<br>      “catching_up”: false ### 是否还在同步中<br>    },</p>
+<p>等最新高度 latest_block_height  和 区块链浏览器节点一致，就说明同步完成。<br>浏览器：<a href="https://explorer.netcloth.org/" target="_blank" rel="noopener">https://explorer.netcloth.org/</a></p>
+<h3 id="四、添加运行验证人"><a href="#四、添加运行验证人" class="headerlink" title="四、添加运行验证人"></a>四、添加运行验证人</h3><p>1、配置环境</p>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">ubuntu:~$ nchcli config chain-id nch-testnet</span><br><span class="line">ubuntu:~$ nchcli config output json</span><br><span class="line">ubuntu:~$ nchcli config indent true</span><br><span class="line">ubuntu:~$ nchcli config trust-node true</span><br></pre></td></tr></tbody></table></figure>
+<p>2、添加账户<br>nchcli keys add #mark#<br>eg：nchcli keys add super<br>将 #mark#  替换成 自定义账户名 your_moniker_name<br>会显示在在区块链浏览器Moniker字段上</p>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ubuntu:~$ nchcli keys add your_moniker_name</span><br></pre></td></tr></tbody></table></figure>
+<p>Note: 按照提示输入加密账号用的密码(后续执行各种交易都需要用该密码)，将命令返回的信息谨慎保存</p>
+<p>3、查看账户信息</p>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ubuntu:~$ nchcli keys  list</span><br></pre></td></tr></tbody></table></figure>
+<p>输出包含<br>[<br>  {<br>    “name”: “super”,<br>    “type”: “local”,<br>    “address”: “nch1nkw4wxj6wttwm3uergymmr8c2fvspuk9t6jw9r”,<br>    “pubkey”: “nchpub1addwnpepqd8nv07rg6h3mm0dwflmx82xh76x74ncd0zuste3uysnl3ak75dmqddmysv”<br>  }<br>]</p>
+<p>4、获得测试token</p>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">使用本地浏览器访问 https://docs.netcloth.org/nch/get_token?#address#</span><br><span class="line">将#address# 替换成 上一步获取的 address</span><br></pre></td></tr></tbody></table></figure>
+<p>即：打开本机浏览器，访问 <a href="https://docs.netcloth.org/nch/get_token?nch1nkw4wxj6wttwm3uergymmr8c2fvspuk9t6jw9r" target="_blank" rel="noopener">https://docs.netcloth.org/nch/get_token?nch1nkw4wxj6wttwm3uergymmr8c2fvspuk9t6jw9r</a></p>
+<p>5、创建验证人</p>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">nchcli tx staking create-validator \</span><br><span class="line">  --amount=1000000000000000pnch \</span><br><span class="line">  --pubkey=$(nchd tendermint show-validator -o text) \</span><br><span class="line">  --moniker=your_moniker_name \</span><br><span class="line">  --commission-rate="0.10" \</span><br><span class="line">  --commission-max-rate="0.20" \</span><br><span class="line">  --commission-max-change-rate="0.01" \</span><br><span class="line">  --min-self-delegation="100" \</span><br><span class="line">  --from=$(nchcli keys show -a your_moniker_name) \</span><br><span class="line">  --ip=your_node_ip \</span><br><span class="line">  --gas=200000</span><br></pre></td></tr></tbody></table></figure>
+
+<p>your_moniker_name  替换为 2步添加账户时设置的name<br>your_node_ip 替换为 腾讯云服务器公网IP:  xx.xx.xx.xx</p>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ubuntu:~$  替换后的 nchcli tx staking create-validator \</span><br></pre></td></tr></tbody></table></figure>
+<p>note：<br>1000000000000000pnch = 1000nch<br>1nch  = 10^12pnch =  1个投票权</p>
+<p>👌，验证人添加完毕！ 并且已经启动</p>
+<h4 id="（可选）-6-向验证人-抵押-委托"><a href="#（可选）-6-向验证人-抵押-委托" class="headerlink" title="（可选） 6. 向验证人 抵押 委托"></a>（可选） 6. 向验证人 抵押 委托</h4><figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">ubuntu:~$ nchcli query staking validators </span><br><span class="line">查询验证人地址，包含自己 your_moniker_name  的节点的  operator_address，就是</span><br><span class="line"></span><br><span class="line">nchcli tx staking delegate  #验证人地址#  2000990000000000pnch --from=#your_moniker_name# --gas=200000 --gas-prices=1000.0pnch</span><br></pre></td></tr></tbody></table></figure>
+
+<p>参考：</p>
+<ol>
+<li><a href="https://docs.netcloth.org/get-started/how-to-become-validator.html#_1-%E5%AE%89%E8%A3%85%E5%B9%B6%E9%83%A8%E7%BD%B2%E5%85%A8%E8%8A%82%E7%82%B9" target="_blank" rel="noopener">https://docs.netcloth.org/get-started/how-to-become-validator.html#_1-%E5%AE%89%E8%A3%85%E5%B9%B6%E9%83%A8%E7%BD%B2%E5%85%A8%E8%8A%82%E7%82%B9</a></li>
+<li><a href="https://docs.netcloth.org/get-started/how-to-delegate.html#%E6%9F%A5%E8%AF%A2%E9%AA%8C%E8%AF%81%E4%BA%BA%E5%88%97%E8%A1%A8" target="_blank" rel="noopener">https://docs.netcloth.org/get-started/how-to-delegate.html#%E6%9F%A5%E8%AF%A2%E9%AA%8C%E8%AF%81%E4%BA%BA%E5%88%97%E8%A1%A8</a></li>
+</ol>
+
+                </article>
+                <ul class="tags-postTags">
+                    
+                    <li>
+                        <a href="/blog/tags/NetCloth/" rel="tag"># NetCloth</a>
+                    </li>
+                    
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    
+    <nav id="gobottom" class="pagination">
+        
+        <span class="prev-next-post">·</span>
+        
+    </nav>
+
+    
+    <div class="inner">
+        <div id="comment"></div>
+    </div>
+    
+</div>
+
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo https://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+
+	</div>
+	
+
+
+<aside class="read-next outer">
+    <div class="inner">
+        <div class="read-next-feed">
+            
+            
+
+<article class="read-next-card" style="background-image: url(https://i.loli.net/2017/11/26/5a19c56faa29f.jpg)">
+  <header class="read-next-card-header">
+    <small class="read-next-card-header-sitetitle">— 爱范 —</small>
+    <h3 class="read-next-card-header-title">最新文章</h3>
+  </header>
+  <div class="read-next-divider">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+      <path d="M13 14.5s2 3 5 3 5.5-2.463 5.5-5.5S21 6.5 18 6.5c-5 0-7 11-12 11C2.962 17.5.5 15.037.5 12S3 6.5 6 6.5s4.5 3.5 4.5 3.5"/>
+    </svg>
+  </div>
+  <div class="read-next-card-content">
+    <ul>
+      
+      
+      
+      <li>
+        <a href="/blog/2020/04/10/%E5%BF%AB%E9%80%9F%E6%90%AD%E5%BB%BANetcloth%E9%AA%8C%E8%AF%81%E4%BA%BA%E8%8A%82%E7%82%B9/">快速搭建 NetCloth 验证人节点</a>
+      </li>
+      
+      
+    </ul>
+  </div>
+  <footer class="read-next-card-footer">
+    <a href="/blog/archives">  MORE  → </a>
+  </footer>
+</article>
+
+            
+            
+            
+
+
+            
+            
+            
+
+<article class="read-next-card" style="background-image: url(https://i.loli.net/2017/11/26/5a19c56faa29f.jpg)">
+	<header class="read-next-card-header tagcloud-card">
+		<h3 class="read-next-card-header-title">标签云</h3>
+	</header>
+	<div class="read-next-card-content-ext">
+		<a href="/blog/tags/NetCloth/" style="font-size: 14px;">NetCloth</a>
+	</div>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
+
+	
+
+
+
+
+<div id="search" class="search-overlay">
+    <div class="search-form">
+        
+        <div class="search-overlay-logo">
+        	<img src="https://i.loli.net/2017/11/26/5a19c0b50432e.png" alt="爱范">
+        </div>
+        
+        <input id="local-search-input" class="search-input" type="text" name="search" placeholder="搜索 ...">
+        <a class="search-overlay-close" href="#"></a>
+    </div>
+    <div id="local-search-result"></div>
+</div>
+
+<footer class="site-footer outer">
+	<div class="site-footer-content inner">
+		<div class="copyright">
+			<a href="/blog/" title="爱范">爱范 © 2020</a>
+			
+				
+			        <span hidden="true" id="/blog/2020/04/10/%E5%BF%AB%E9%80%9F%E6%90%AD%E5%BB%BANetcloth%E9%AA%8C%E8%AF%81%E4%BA%BA%E8%8A%82%E7%82%B9/" class="leancloud-visitors" data-flag-title="快速搭建 NetCloth 验证人节点">
+			            <span>阅读量 </span>
+			            <span class="leancloud-visitors-count">0</span>
+			        </span>
+	    		
+    		
+		</div>
+		
+		
+	</div>
+</footer>
+	
+
+
+<script>
+    if(window.navigator && navigator.serviceWorker) {
+        navigator.serviceWorker.getRegistrations().then(function(registrations) {
+            for(let registration of registrations) {
+                registration.unregister()
+            }
+        })
+    }
+</script>
+
+
+<script id="scriptLoad" src="/blog/js/allinone.min.js" async></script>
+
+
+<script>
+    document.getElementById('scriptLoad').addEventListener('load', function () {
+        
+        
+            var bLazy = new Blazy();
+        
+
+        
+        
+
+        
+        
+        
+            searchFunc("/blog/");
+        
+        
+    })
+</script>
+
+
+
+
+<link rel="stylesheet" href="/blog/photoswipe/photoswipe.css">
+
+
+<link rel="stylesheet" href="/blog/photoswipe/default-skin/default-skin.css">
+
+
+<script src="/blog/photoswipe/photoswipe.min.js"></script>
+
+
+<script src="/blog/photoswipe/photoswipe-ui-default.min.js"></script>
+
+
+
+
+
+<script id="valineScript" src="//unpkg.com/valine/dist/Valine.min.js" async></script>
+<script>
+    document.getElementById('valineScript').addEventListener("load", function() {
+        new Valine({
+            el: '#comment' ,
+            verify: false,
+            notify: false,
+            appId: 'B9LfjC42Kr1fuWyTcImoFdva-gzGzoHsz',
+            appKey: 'Lx95fID5Lax9AVoMnbftWkyh',
+            placeholder: '弹一发闪～',
+            pageSize: 10,
+            avatar: 'mm',
+            visitor: true
+        })
+
+        
+                
+    });
+
+     window.addEventListener("load", function(event) {
+      console.log("DOM fully loaded and parsed");
+      let elements = document.getElementsByClassName("info")
+      if (elements.length > 0) {
+                        elements[0].style.display = "none"
+                } else {
+                        console.log("less than 1")
+        }
+    });
+</script>
+
+
+
+
+<script>
+    document.addEventListener('DOMContentLoaded',function(){
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        }
+        else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    });
+</script>
+
+
+
+
+</body></html>
