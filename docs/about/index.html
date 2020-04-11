@@ -62,6 +62,8 @@
 	
 	
 	
+
+	<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=0">
 </head>
 
 <body class="tag-template">
@@ -87,11 +89,11 @@
             
             
             <li>
-                <a href="/about" title="关于">关于</a>
+                <a href="/blog/about" title="关于">关于</a>
             </li>
             
             <li>
-                <a href="/archives" title="归档">归档</a>
+                <a href="/blog/archives" title="归档">归档</a>
             </li>
             
             
@@ -140,12 +142,28 @@
 				<article class="post-full no-image">
 					<section class="post-full-content page-full-content">
 						<div id="photoswipe" class="markdown-body">
-							<h1 id="About"><a href="#About" class="headerlink" title="About"></a>About</h1><p>专业矿工、抢红包，100年不动摇！</p>
+							<h3 id="Super-爱范"><a href="#Super-爱范" class="headerlink" title="Super 爱范"></a>Super 爱范</h3><p>专业矿工、抢红包，100年不动摇！</p>
 <h3 id="福利推荐"><a href="#福利推荐" class="headerlink" title="福利推荐"></a>福利推荐</h3><ol>
 <li><a href="https://url.cn/51xsiTM" target="_blank" rel="noopener">腾讯云服务器优惠</a></li>
 <li><a href="https://www.aliyun.com/minisite/goods?userCode=gn1cbgfe" target="_blank" rel="noopener">阿里云服务器优惠</a></li>
+<li><a href="https://www.hostwinds.com/7974.html" target="_blank" rel="noopener">欧美优质VPS/VPN推荐</a></li>
 </ol>
-<h3 id="群里聊"><a href="#群里聊" class="headerlink" title="群里聊"></a>群里聊</h3>
+<h3 id="群里聊"><a href="#群里聊" class="headerlink" title="群里聊"></a>群里聊</h3><ol>
+<li><p>NetCloth App 扫描加入<br><img alt="群二维码" class="post-img b-lazy" data-img="/images/group_ziyou_qrcode.png" data-index="0" data-src="/images/group_ziyou_qrcode.png"></p>
+</li>
+<li><div onclick="jumpToGroup()" style="color:red">开车，点此上车<div>
+
+</div></div></li>
+</ol>
+<script src="/blog/js/nchsdk.js"> </script>
+<script>
+function jumpToGroup(e) {
+        console.log("this is tap")
+         nchsdk.chat.joinGroup("04297340848754eb0ad2eab8b2421a7b32869552a118155d41e9882ead356a9a6ecd0876091648eadf9c5e5fc753a2c890fa90fca0df9a51550e7a404cc468a111").then(function (res) {
+                        }).catch(function (e) {
+                        })
+}
+</script>
 						</div>
 					</section>
 				</article>
@@ -251,7 +269,7 @@
       
       
       <li>
-        <a href="/blog/2020/04/10/%E5%BF%AB%E9%80%9F%E6%90%AD%E5%BB%BANetcloth%E9%AA%8C%E8%AF%81%E4%BA%BA%E8%8A%82%E7%82%B9/">快速搭建 NetCloth 验证人节点</a>
+        <a href="/blog/2020/04/10/%E5%BF%AB%E9%80%9F%E6%90%AD%E5%BB%BAnetcloth%E9%AA%8C%E8%AF%81%E4%BA%BA%E8%8A%82%E7%82%B9/">快速搭建 netCloth 验证人节点</a>
       </li>
       
       
@@ -310,6 +328,11 @@
 			
 		</div>
 		
+		
+		<nav class="site-footer-nav">
+			
+			
+		</nav>
 		
 	</div>
 </footer>

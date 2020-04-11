@@ -1,5 +1,5 @@
 ---
-title: 快速搭建 NetCloth 验证人节点
+title: 快速搭建 netCloth 验证人节点
 date: 2020-04-10 18:40:30
 tags: NetCloth
 ---
