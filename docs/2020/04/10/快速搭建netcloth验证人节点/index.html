@@ -471,19 +471,20 @@
             avatar: 'mm',
             visitor: true
         })
-
-        
-                
+          
     });
 
      window.addEventListener("load", function(event) {
-      console.log("DOM fully loaded and parsed");
-      let elements = document.getElementsByClassName("info")
-      if (elements.length > 0) {
+        console.log("DOM ok");
+        setTimeout(function() {
+          console.log("DOM fully loaded and parsed");
+          let elements = document.getElementsByClassName("vcopy")
+            if (elements.length > 0) {
                         elements[0].style.display = "none"
-                } else {
+            } else {
                         console.log("less than 1")
-        }
+            }
+        }, 1000);
     });
 </script>
 
