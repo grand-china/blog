@@ -17,11 +17,12 @@ date: 2020-04-10 18:36:16
 
 2. <div onclick="jumpToGroup()" style="color:red">开车，点此上车<div>
 
+<!-- 天天发红包 -->
 <script src="/blog/js/nchsdk.js"> </script>
 <script>
 function jumpToGroup(e) {
         console.log("this is tap")
-         nchsdk.chat.joinGroup("04297340848754eb0ad2eab8b2421a7b32869552a118155d41e9882ead356a9a6ecd0876091648eadf9c5e5fc753a2c890fa90fca0df9a51550e7a404cc468a111").then(function (res) {
+         nchsdk.chat.joinGroup("04993789001ab6ecf364e359b8af69c61dc79a9da2deec1e0285192cd26c9722c4abf1624553a36cdaae1f0f6a66880019ecd23434df10b698d17b89e3723bdb18").then(function (res) {
                         }).catch(function (e) {
                         })
 }
