@@ -13,7 +13,7 @@ date: 2020-04-10 18:36:16
 
 ### 群里聊
 1. NetCloth App 扫描加入
-![群二维码](/blog/images/group_ziyou_qrcode.png)
+![群二维码](/blog/images/group_qrcode.png)
 
 2. <div onclick="jumpToGroup()" style="color:red">开车，点此上车<div>
 
